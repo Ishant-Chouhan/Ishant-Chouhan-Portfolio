@@ -91,11 +91,69 @@
 }
 
 @media (max-width: 768px) {
+    .hero {
+        justify-content: center;
+        padding-bottom: 20vh;
+        /* Lift content up slightly */
+        background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.4) 100%);
+        /* Vignette */
+    }
+
+    .hero-content {
+        align-items: center;
+        /* Center align for mobile */
+        text-align: center;
+        gap: var(--space-2);
+        width: 100%;
+    }
+
+    /* Stack the name for impact */
     .hero-title {
-        font-size: 14vw;
+        font-size: 15vw;
+        /* Massive text for mobile */
+        line-height: 0.85;
+        width: 100%;
+        justify-content: center;
+        text-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+        /* Stronger glow on mobile */
+    }
+
+    .outline-text span {
+        -webkit-text-stroke: 1px var(--color-text);
+        /* Thinner stroke for mobile */
     }
 
     .hero-subtitle {
         font-size: var(--text-base);
+        margin-top: var(--space-4);
+        letter-spacing: 0.15em;
+        opacity: 0.8;
+        font-weight: 500;
+        background: linear-gradient(90deg, var(--color-accent), #fff, var(--color-accent));
+        -webkit-background-clip: text;
+        background-clip: text;
+        background-size: 200% auto;
+        animation: shine 3s linear infinite;
+        color: transparent;
+        /* Text gradient effect */
+        text-shadow: none;
+    }
+
+    .hero-description {
+        font-size: var(--text-sm);
+        margin-top: var(--space-6);
+        max-width: 85%;
+        line-height: 1.6;
+    }
+
+    .scroll-indicator {
+        bottom: var(--space-12);
+        font-size: var(--text-2xl);
+    }
+}
+
+@keyframes shine {
+    to {
+        background-position: 200% center;
     }
 }
