@@ -1,0 +1,101 @@
+.hero {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 0 var(--space-4);
+    text-align: center;
+    z-index: 1;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+}
+
+.hero-title {
+    font-family: var(--font-display);
+    font-size: var(--text-hero);
+    font-weight: 600;
+    line-height: 0.9;
+    text-transform: uppercase;
+    margin: 0;
+    letter-spacing: -0.04em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    color: var(--color-text);
+    /* Subtle text shadow for the main title */
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.hero-subtitle {
+    font-family: var(--font-sans);
+    font-size: var(--text-2xl);
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-top: var(--space-4);
+    opacity: 0.9;
+    display: flex;
+    color: var(--color-accent);
+    text-shadow: var(--glow-text);
+    /* Neon glow for subtitle */
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.flex {
+    display: flex;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.outline-text span {
+    -webkit-text-stroke: 1.5px var(--color-text);
+    color: transparent;
+    transition: all 0.3s ease;
+}
+
+/* On hover, fill with accent and glow */
+.outline-text:hover span {
+    color: var(--color-accent);
+    -webkit-text-stroke-color: var(--color-accent);
+    text-shadow: var(--glow-text);
+}
+
+.hero-description {
+    margin-top: var(--space-8);
+    font-size: var(--text-lg);
+    max-width: 600px;
+    opacity: 0.8;
+    font-family: var(--font-sans);
+    color: var(--color-text-light);
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: var(--space-8);
+    font-size: var(--text-xl);
+    opacity: 0.5;
+    color: var(--color-accent);
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 14vw;
+    }
+
+    .hero-subtitle {
+        font-size: var(--text-base);
+    }
+}

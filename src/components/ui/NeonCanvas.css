@@ -1,0 +1,18 @@
+.neon-canvas-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+    /* Let clicks pass through, but we listen for mousemove on window */
+    background: radial-gradient(circle at 50% 50%, #0a0a1a 0%, #050505 100%);
+    /* Deep space gradient */
+}
+
+canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}

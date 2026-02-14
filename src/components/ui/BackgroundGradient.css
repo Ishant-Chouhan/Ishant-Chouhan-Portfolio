@@ -1,0 +1,25 @@
+.background-gradient-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.gradient-blob {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70vw;
+    height: 70vw;
+    /* Neon Blue / Cyan Gradient */
+    background: radial-gradient(circle, rgba(0, 243, 255, 0.12) 0%, rgba(0, 102, 255, 0.05) 40%, rgba(0, 0, 0, 0) 70%);
+    border-radius: 50%;
+    filter: blur(80px);
+    mix-blend-mode: screen;
+    /* Helps colors pop on dark background */
+}

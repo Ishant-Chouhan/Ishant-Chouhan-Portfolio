@@ -1,0 +1,74 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: var(--space-8) var(--space-4);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    mix-blend-mode: normal;
+    /* Changed from difference for better control over neon */
+    color: var(--color-text);
+    backdrop-filter: blur(5px);
+    /* subtle blur */
+}
+
+.logo a {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--text-lg);
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+    transition: color 0.3s ease;
+}
+
+.logo a:hover {
+    color: var(--color-accent);
+    text-shadow: var(--glow-text);
+}
+
+.nav {
+    display: flex;
+    gap: var(--space-8);
+}
+
+.nav-link {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    position: relative;
+    color: var(--color-text);
+    opacity: 0.8;
+    transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+.nav-link:hover {
+    opacity: 1;
+    color: var(--color-accent);
+    text-shadow: var(--glow-text);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0%;
+    height: 1px;
+    background-color: var(--color-accent);
+    box-shadow: var(--glow-text);
+    transition: width 0.3s var(--ease-out-expo);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: var(--space-4);
+    }
+}
