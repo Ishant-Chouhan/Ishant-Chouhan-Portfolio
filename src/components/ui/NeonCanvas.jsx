@@ -29,6 +29,7 @@ const NeonCanvas = () => {
         };
 
         const mouse = { x: undefined, y: undefined };
+        const tilt = { x: 0, y: 0 }; // Gyroscope tilt
 
         // State
         let neurons = [];
@@ -82,6 +83,11 @@ const NeonCanvas = () => {
                 // 1. Basic Movement
                 this.x += this.vx;
                 this.y += this.vy;
+
+                // 1.5 Gyroscope Tilt Force
+                // Apply a gentle push based on device tilt
+                this.vx += tilt.x * 0.05;
+                this.vy += tilt.y * 0.05;
 
                 // 2. Spring Physics (Cohesion)
                 // Gently pull towards neighbors to simulate structural integrity
@@ -306,6 +312,25 @@ const NeonCanvas = () => {
         };
         const handleMouseLeave = () => { mouse.x = undefined; mouse.y = undefined; };
 
+        const handleDeviceOrientation = (event) => {
+            // Gamma: Left/Right tilt (-90 to 90) -> mapped to X force
+            // Beta: Front/Back tilt (-180 to 180) -> mapped to Y force
+            if (event.gamma !== null) {
+                // Normalize and clamp
+                let tx = event.gamma / 20; // Sensitivity factor
+                if (tx > 2) tx = 2;
+                if (tx < -2) tx = -2;
+                tilt.x = tx;
+            }
+            if (event.beta !== null) {
+                // Offset holding position (usually people hold phone at 45 degrees)
+                let ty = (event.beta - 45) / 20;
+                if (ty > 2) ty = 2;
+                if (ty < -2) ty = -2;
+                tilt.y = ty;
+            }
+        };
+
         // Start
         init();
         animate();
@@ -313,11 +338,13 @@ const NeonCanvas = () => {
         window.addEventListener('resize', handleResize);
         window.addEventListener('mousemove', handleMouseMove);
         window.addEventListener('mouseout', handleMouseLeave);
+        window.addEventListener('deviceorientation', handleDeviceOrientation);
 
         return () => {
             window.removeEventListener('resize', handleResize);
             window.removeEventListener('mousemove', handleMouseMove);
             window.removeEventListener('mouseout', handleMouseLeave);
+            window.removeEventListener('deviceorientation', handleDeviceOrientation);
             cancelAnimationFrame(animationFrameId);
         };
     }, []);
