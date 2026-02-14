@@ -40,7 +40,7 @@ const About = () => {
                             <h3>Experience</h3>
                             <div className="resume-item">
                                 <h4>
-                                    <a href="/certifications/Decode_Data_Internship.pdf" target="_blank" rel="noopener noreferrer" className="experience-link">
+                                    <a href={`${import.meta.env.BASE_URL}certifications/Decode_Data_Internship.pdf`} target="_blank" rel="noopener noreferrer" className="experience-link">
                                         AI/ML Intern @ Decode Data Academy
                                     </a>
                                 </h4>
@@ -51,7 +51,7 @@ const About = () => {
                             </div>
                             <div className="resume-item">
                                 <h4>
-                                    <a href="/certifications/Zaalima_developments_internship.pdf" target="_blank" rel="noopener noreferrer" className="experience-link">
+                                    <a href={`${import.meta.env.BASE_URL}certifications/Zaalima_developments_internship.pdf`} target="_blank" rel="noopener noreferrer" className="experience-link">
                                         Data Science Intern @ Zaalima Development
                                     </a>
                                 </h4>
@@ -67,16 +67,16 @@ const About = () => {
                         <motion.div className="resume-section">
                             <h3>Certifications</h3>
                             <div className="resume-item certifications-list">
-                                <a href="/certifications/Amazon_ML_Summer_School.pdf" target="_blank" rel="noopener noreferrer" className="certification-link">
+                                <a href={`${import.meta.env.BASE_URL}certifications/Amazon_ML_Summer_School.pdf`} target="_blank" rel="noopener noreferrer" className="certification-link">
                                     • Amazon ML Summer School (Aug 2025)
                                 </a>
-                                <a href="/certifications/python_essentials_1.pdf" target="_blank" rel="noopener noreferrer" className="certification-link">
+                                <a href={`${import.meta.env.BASE_URL}certifications/python_essentials_1.pdf`} target="_blank" rel="noopener noreferrer" className="certification-link">
                                     • Python Essentials 1 – Cisco (June 2024)
                                 </a>
-                                <a href="/certifications/python_essentials_2.pdf" target="_blank" rel="noopener noreferrer" className="certification-link">
+                                <a href={`${import.meta.env.BASE_URL}certifications/python_essentials_2.pdf`} target="_blank" rel="noopener noreferrer" className="certification-link">
                                     • Python Essentials 2 – Cisco (June 2024)
                                 </a>
-                                <a href="/certifications/Python Demonstrations For Practice Course.pdf" target="_blank" rel="noopener noreferrer" className="certification-link">
+                                <a href={`${import.meta.env.BASE_URL}certifications/Python%20Demonstrations%20For%20Practice%20Course.pdf`} target="_blank" rel="noopener noreferrer" className="certification-link">
                                     • Python Demonstrations for Practice Course – Udemy (March 2024)
                                 </a>
                             </div>
