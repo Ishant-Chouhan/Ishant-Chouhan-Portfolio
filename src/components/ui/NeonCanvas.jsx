@@ -29,7 +29,7 @@ const NeonCanvas = () => {
         };
 
         const mouse = { x: undefined, y: undefined };
-        const tilt = { x: 0, y: 0 }; // Gyroscope tilt
+        const tilt = { current: { x: 0, y: 0 }, target: { x: 0, y: 0 } }; // Gyroscope tilt with smoothing
 
         // State
         let neurons = [];
@@ -85,9 +85,9 @@ const NeonCanvas = () => {
                 this.y += this.vy;
 
                 // 1.5 Gyroscope Tilt Force
-                // Apply a stronger push based on device tilt
-                this.vx += tilt.x * 0.2;
-                this.vy += tilt.y * 0.2;
+                // Apply a gentle push based on device tilt
+                this.vx += tilt.current.x * 0.08;
+                this.vy += tilt.current.y * 0.08;
 
                 // 2. Spring Physics (Cohesion)
                 // Gently pull towards neighbors to simulate structural integrity
@@ -234,6 +234,10 @@ const NeonCanvas = () => {
 
             const scrollOp = scrollY.get();
 
+            // Smoothly interpolate tilt
+            tilt.current.x += (tilt.target.x - tilt.current.x) * 0.1;
+            tilt.current.y += (tilt.target.y - tilt.current.y) * 0.1;
+
             // 0. Draw Background Stars
             stars.forEach(star => {
                 star.update();
@@ -316,18 +320,18 @@ const NeonCanvas = () => {
             // Gamma: Left/Right tilt (-90 to 90) -> mapped to X force
             // Beta: Front/Back tilt (-180 to 180) -> mapped to Y force
             if (event.gamma !== null) {
-                // Normalize, more sensitive (divide by 10 instead of 20)
-                let tx = event.gamma / 10;
-                if (tx > 5) tx = 5;
-                if (tx < -5) tx = -5;
-                tilt.x = tx;
+                // Smooth, subtle tilt
+                let tx = event.gamma / 15;
+                if (tx > 3) tx = 3;
+                if (tx < -3) tx = -3;
+                tilt.target.x = tx;
             }
             if (event.beta !== null) {
-                // Offset holding position, more sensitive
-                let ty = (event.beta - 45) / 10;
-                if (ty > 5) ty = 5;
-                if (ty < -5) ty = -5;
-                tilt.y = ty;
+                // Offset holding position
+                let ty = (event.beta - 45) / 15;
+                if (ty > 3) ty = 3;
+                if (ty < -3) ty = -3;
+                tilt.target.y = ty;
             }
         };
 
